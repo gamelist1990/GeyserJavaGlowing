@@ -1,0 +1,30 @@
+{
+  "format_version": 2,
+  "header": {
+    "name": "Geyser Java Glowing - Player Outline",
+    "description": "Player outline renderer adapted from Glowing Player Outline by BigGamers4u, Java Glowing bridged by Geyser extension",
+    "min_engine_version": [
+      1,
+      20,
+      0
+    ],
+    "uuid": "bbe692bf-dc53-438a-afd8-acadbc5697ed",
+    "version": [
+      0,
+      2,
+      0
+    ]
+  },
+  "modules": [
+    {
+      "description": "§eThis Pack is Made by §bBigGamers4u\n§fPlayers can now glow just like Java",
+      "type": "resources",
+      "uuid": "8b643c2e-56f7-4381-8f55-5e694596aba6",
+      "version": [
+        0,
+        2,
+        0
+      ]
+    }
+  ]
+}

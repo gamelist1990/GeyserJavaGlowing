@@ -1,0 +1,103 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.elytra_outline.default": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"scale": 1.067
+				},
+				"left_wing_outline": {
+					"position": [4.5, 4, -2],
+					"rotation": [15, 0, -13],
+					"scale": [1, 1, 2]
+				},
+				"right_wing_outline": {
+					"position": [-4.5, 4, -2],
+					"rotation": [15, 0, 13],
+					"scale": [1, 1, 2]
+				}
+			}
+		},
+		"animation.elytra_outline.gliding": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"scale": 1.067
+				},
+				"left_wing_outline": {
+					"position": [2, 2, -2],
+					"rotation": [
+						"variable.ratio = (query.position_delta(1) < 0) ? 1 - math.pow(-query.movement_direction(1), 1.5) : 1; return math.lerp(15, 20, variable.ratio);",
+						0,
+						"math.lerp(-15, -90, variable.ratio)"
+					],
+					"scale": [1, 1, 2]
+				},
+				"right_wing_outline": {
+					"position": [-2, 2, -2],
+					"rotation": [
+						"variable.ratio = (query.position_delta(1) < 0) ? 1 - math.pow(-query.movement_direction(1), 1.5) : 1; return math.lerp(15, 20, variable.ratio);",
+						0,
+						"math.lerp(15, 90, variable.ratio)"
+					],
+					"scale": [1, 1, 2]
+				}
+			}
+		},
+		"animation.elytra_outline.sneaking": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"scale": 1.067
+				},
+				"left_wing_outline": {
+					"rotation": [43.05401, 8.288, -50.82451],
+					"position": [2, -1, -6],
+					"scale": [1, 1, 2]
+				},
+				"right_wing_outline": {
+					"rotation": [43.05401, -8.288, 50.82451],
+					"position": [-2, -1, -6],
+					"scale": [1, 1, 2]
+				}
+			}
+		},
+		"animation.elytra_outline.sleeping": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"scale": 1.067
+				},
+				"left_wing_outline": {
+					"position": [5, 4, -2],
+					"rotation": [0, 0, -15],
+					"scale": [1, 1, 2]
+				},
+				"right_wing_outline": {
+					"position": [-5, 4, -2],
+					"rotation": [0, 0, 15],
+					"scale": [1, 1, 2]
+				}
+			}
+		},
+		"animation.elytra_outline.swimming": {
+			"loop": true,
+			"bones": {
+				"body": {
+					"scale": 1.067
+				},
+				"left_wing_outline": {
+					"position": [5, 2, -2],
+					"rotation": ["query.swim_amount * 15", 0, -15],
+					"scale": [1, 1, 2]
+				},
+				"right_wing_outline": {
+					"position": [-5, 2, -2],
+					"rotation": ["query.swim_amount * 15", 0, 15],
+					"scale": [1, 1, 2]
+				}
+			}
+		}
+	}
+}

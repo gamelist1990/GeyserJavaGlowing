@@ -1,0 +1,6 @@
+id: geyserjavaglowing
+name: GeyserJavaGlowing
+main: org.pexserver.geyserglowing.GeyserJavaGlowingExtension
+api: 2.11.0
+version: ${version}
+authors: [PEXServer]

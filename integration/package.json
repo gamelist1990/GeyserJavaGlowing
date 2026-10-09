@@ -1,0 +1,17 @@
+{
+  "name": "geyser-java-glowing-integration",
+  "version": "1.0.0",
+  "description": "Offline Paper/Geyser multi-client packet verification",
+  "scripts": {
+    "test": "node run.cjs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bedrock-protocol": "^3.60.1",
+    "rcon-client": "^4.2.5"
+  },
+  "private": true
+}

@@ -1,0 +1,13 @@
+{
+	"format_version": "1.8.0",
+	"animations": {
+		"animation.player.first_person.item_fix": {
+			"loop": true,
+			"bones": {
+				"rightArm": {
+					"position": ["q.property('item:fix_pos_x')", "q.property('item:fix_pos_y')", "q.property('item:fix_pos_z')"]
+				}
+			}
+		}
+	}
+}

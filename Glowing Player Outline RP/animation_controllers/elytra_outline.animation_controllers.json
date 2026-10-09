@@ -1,0 +1,63 @@
+{
+	"format_version" : "1.10.0",
+	"animation_controllers": {
+		"controller.animation.elytra_outline.default": {
+			"states": {
+				"elytra_default": {
+					"animations": [ "elytra_default" ],
+					"transitions": [
+						{ "elytra_gliding": "query.is_gliding" },
+						{ "elytra_sneaking": "query.is_sneaking" },
+						{ "elytra_sleeping": "query.is_sleeping" },
+						{ "elytra_swimming": "query.is_swimming" }
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"elytra_gliding": {
+					"animations": [ "elytra_gliding" ],
+					"transitions": [
+						{ "elytra_sleeping": "query.is_sleeping" },
+						{ "elytra_swimming": "query.is_swimming" },
+						{ "elytra_default": "!query.is_gliding" }
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"elytra_sneaking": {
+					"animations": [ "elytra_sneaking" ],
+					"transitions": [
+						{ "elytra_gliding": "query.is_gliding" },
+						{ "elytra_sleeping": "query.is_sleeping" },
+						{ "elytra_swimming": "query.is_swimming" },
+						{ "elytra_default": "!query.is_sneaking" }
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"elytra_sleeping": {
+					"animations": [ "elytra_sleeping" ],
+					"transitions": [
+						{ "elytra_gliding": "query.is_gliding" },
+						{ "elytra_sneaking": "query.is_sneaking" },
+						{ "elytra_swimming": "query.is_swimming" },
+						{ "elytra_default": "!query.is_sleeping" }
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				},
+				"elytra_swimming": {
+					"animations": [ "elytra_swimming" ],
+					"transitions": [
+						{ "elytra_gliding": "query.is_gliding" },
+						{ "elytra_sneaking": "query.is_sneaking" },
+						{ "elytra_sleeping": "query.is_sleeping" },
+						{ "elytra_default": "!query.is_swimming" }
+					],
+					"blend_transition": 0.1,
+					"blend_via_shortest_path": true
+				}
+			}
+		}
+	}
+}

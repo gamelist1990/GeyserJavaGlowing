@@ -1,0 +1,59 @@
+{
+  "format_version": "1.10.0",
+  "render_controllers": {
+    "controller.render.outline_netherite_leggings_layer_black_no_esp": {
+      "geometry": "Geometry.armor_2_outline",
+      "materials": [ { "*": "q.property('glow:color') == 0 ? Material.default : Material.outline_no_esp" } ],
+      "textures": [ "Texture.netherite_2" ],
+      "part_visibility": [
+        { "*": true }
+      ],
+      "overlay_color": {
+        "r": "Math.floor(Math.sin(query.life_time * 8) * 0)",
+        "g": "Math.floor(Math.sin(query.life_time * 8 + 2.0) * 0)",
+        "b": "Math.floor(Math.sin(query.life_time * 8 + 4.0) * 0)",
+        "a": 1.0
+      },
+      "is_hurt_color": {
+        "r": "Math.floor(Math.sin(query.life_time * 8) * 0)",
+        "g": "Math.floor(Math.sin(query.life_time * 8 + 2.0) * 0)",
+        "b": "Math.floor(Math.sin(query.life_time * 8 + 4.0) * 0)",
+        "a": 1.0
+      },
+      "on_fire_color": {
+        "r": "Math.floor(Math.sin(query.life_time * 8) * 0)",
+        "g": "Math.floor(Math.sin(query.life_time * 8 + 2.0) * 0)",
+        "b": "Math.floor(Math.sin(query.life_time * 8 + 4.0) * 0)",
+        "a": 1.0
+      },
+      "ignore_lighting": true
+    },
+    "controller.render.outline_netherite_leggings_layer_customization": {
+      "geometry": "Geometry.armor_2_outline",
+      "materials": [ { "*": "q.property('glow:color') == 0 ? Material.default : Material.outline" } ],
+      "textures": [ "Texture.netherite_2" ],
+      "part_visibility": [
+        { "*": true }
+      ],
+      "overlay_color": {
+        "r": "q.property('glow:r')",
+        "g": "q.property('glow:g')",
+        "b": "q.property('glow:b')",
+        "a": "q.property('glow:a')"
+      },
+      "is_hurt_color": {
+        "r": "q.property('glow:r')",
+        "g": "q.property('glow:g')",
+        "b": "q.property('glow:b')",
+        "a": "q.property('glow:a')"
+      },
+      "on_fire_color": {
+        "r": "q.property('glow:r')",
+        "g": "q.property('glow:g')",
+        "b": "q.property('glow:b')",
+        "a": "q.property('glow:a')"
+      },
+      "ignore_lighting" : true
+    }
+  }
+}

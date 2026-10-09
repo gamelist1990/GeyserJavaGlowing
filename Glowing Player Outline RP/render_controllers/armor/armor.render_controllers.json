@@ -1,0 +1,10 @@
+{
+    "format_version": "1.8.0",
+    "render_controllers": {
+      "controller.render.armor": {
+        "geometry": "Geometry.default",
+        "materials": [ { "*": "(variable.is_enchanted ? (q.property('glow:color') == 0 ? Material.enchanted : Material.enchanted_base) : (q.property('glow:color') == 0 ? Material.default : Material.outline_base))" } ],
+        "textures": [ "variable.has_trim ? variable.trim_path : Texture.default", "Texture.enchanted" ]
+      }
+    }
+  }
