@@ -46,8 +46,9 @@ Java単体テスト17件とリソースパック検証4件を実装しました�
 - Geyser内部のパケット変換器を使うため、Geyser更新時には再ビルドと再検証が必要になる場合があります。
 - RPはプレイヤーのエンティティ定義・マテリアルを変更するため、他のプレイヤー描画RPと競合する場合があります。
 
-## Geyser Cooldown 1.3 との併用
+## GeyserCooldownAnimation との併用
 
-両方の元パックがプレイヤー定義を上書きするため、そのままの併用では片方の機能が消える場合があります。
-ローカルの Cooldown 1.3 JAR から、両パックの優先順に依存しない互換パックと互換 JAR を生成できます。
-生成・導入・検証の手順は [COOLDOWN_COMPATIBILITY.md](COOLDOWN_COMPATIBILITY.md) を参照してください。
+0.2.1 以降は GeyserCooldownAnimation と同じ統合済み `entity/player.entity.json` を同梱します。
+Glowing の輪郭描画と Cooldown の `gca_*` / recovery controller を同じ player 定義に保持するため、2つのリソースパックの優先順に依存しません。
+通常の `GeyserJavaGlowing` と `GeyserCooldownAnimation` の JAR を同時に導入するだけでよく、専用の互換 JAR は不要です。
+別のリソースパックが `entity/player.entity.json` を上書きする場合は、そのパック側でも統合が必要です。

@@ -1,3 +1,7 @@
+# 旧版向け Glowing / Cooldown 互換生成
+
+> GeyserJavaGlowing 0.2.1 以降と最新の GeyserCooldownAnimation は、同じ統合済み `entity/player.entity.json` を本体に同梱するため、この互換 JAR 生成は不要です。以下は 0.2.0 / 1.3.0 以前の成果物を再生成する場合だけ使用します。
+
 # Glowing / Geyser Cooldown 1.3 互換版
 
 対象はローカルの **Geyser Cooldown Crossplay Weapons 1.3.0** と GeyserJavaGlowing 0.2.0 です。
