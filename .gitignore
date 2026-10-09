@@ -6,3 +6,5 @@ integration/node_modules/
 integration/classes/
 integration/results/
 integration/fixtures/
+
+__pycache__/

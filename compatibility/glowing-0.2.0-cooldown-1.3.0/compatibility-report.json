@@ -1,0 +1,17 @@
+{
+  "glowing_source": "Glowing Player Outline RP",
+  "cooldown_input": "GeyserCooldownAnimation-1.3.0.jar",
+  "cooldown_sha256": "f47665bed3a850a36f070532034f9db3e180028f855696d89b6b41a334543c0a",
+  "shared_player_sha256": "4e659ca53b9fdac9992d122951a6e8ed820778429986ff37a3c99e415d287ee0",
+  "assets": {
+    "GeyserCooldownAnimation-1.3.0-glowing-compat.jar": "9fc92a129753ca718964d75a2779b034fc4bad7522e5fdfebece5aee0e0fd460",
+    "GeyserCooldownAnimation-glowing-compat.mcpack": "12305bfdaaa4583cd103f41ed19dbc564a705208138c28f0d6adcaac5af4fe75",
+    "GeyserJavaGlowing-0.2.0-cooldown-compat.jar": "dcaa838c26dcbca8ceb3834683476bdd688518c943f58231430163c01961a686",
+    "GeyserJavaGlowing-cooldown-compat.mcpack": "3fe24c5d2e2f047ddde7ebe82b0bb5db1ac3b4356c4bd294298cc323da6ae39d"
+  },
+  "validation": {
+    "resource_pack_tests": 15,
+    "result": "passed",
+    "compiled_against_runtime": "Geyser-Spigot 2.12.0-SNAPSHOT"
+  }
+}
