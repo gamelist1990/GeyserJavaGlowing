@@ -1,0 +1,1 @@
+一人称のアイテム基準ポーズはMojang bedrock-samplesのresource_pack/animations/player_firstperson.animation.jsonに由来します。識別子のみ変更しています。Mojangの条件はlicenses/Mojang-bedrock-samples-LICENSE.mdを参照してください。
