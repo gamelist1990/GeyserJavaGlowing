@@ -97,6 +97,9 @@ def merge_player(glow_data, cooldown_data):
         if not (isinstance(entry, str) and entry in LEGACY_COOLDOWNS)
     ]
     for entry in cooldown_scripts["animate"]:
+        if isinstance(entry, dict) and "elytra_default_controller" in entry:
+            # Glowing owns the elytra condition, including its first-person guard.
+            continue
         if entry not in scripts["animate"]:
             scripts["animate"].append(copy.deepcopy(entry))
     return encode(result)
