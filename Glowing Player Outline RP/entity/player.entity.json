@@ -10,8 +10,8 @@
         "animated": "player_animated",
         "spectator": "player_spectator",
         "outline_base": "outline_base",
-        "outline": "outline",
-        "outline_no_esp": "outline_no_esp"
+        "outline": "outline_depth",
+        "outline_no_esp": "outline_depth"
       },
       "textures": {
         "default": "textures/entity/steve",
@@ -235,24 +235,6 @@
       },
       "render_controllers": [
         {
-          "controller.render.player.first_person_spectator": "variable.is_first_person && query.is_spectator"
-        },
-        {
-          "controller.render.player.third_person_spectator": "!variable.is_first_person && !variable.map_face_icon && query.is_spectator"
-        },
-        {
-          "controller.render.player.first_person": "variable.is_first_person && !query.is_spectator"
-        },
-        {
-          "controller.render.player.third_person": "!variable.is_first_person && !variable.map_face_icon && !query.is_spectator"
-        },
-        {
-          "controller.render.player.map": "variable.map_face_icon"
-        },
-        {
-          "controller.render.player.cape": "!variable.is_first_person || !variable.map_face_icon && !query.is_spectator"
-        },
-        {
           "controller.render.outline_layer_black_no_esp": "variable.slim && !variable.is_first_person && q.property('glow:color') == 1"
         },
         {
@@ -449,6 +431,24 @@
         },
         {
           "controller.render.outline_leather_boots_layer_customization": "!variable.is_first_person && query.is_item_name_any('slot.armor.feet', 0, 'minecraft:leather_boots') && q.property('glow:color') == 2"
+        },
+        {
+          "controller.render.player.first_person_spectator": "variable.is_first_person && query.is_spectator"
+        },
+        {
+          "controller.render.player.third_person_spectator": "!variable.is_first_person && !variable.map_face_icon && query.is_spectator"
+        },
+        {
+          "controller.render.player.first_person": "variable.is_first_person && !query.is_spectator"
+        },
+        {
+          "controller.render.player.third_person": "!variable.is_first_person && !variable.map_face_icon && !query.is_spectator"
+        },
+        {
+          "controller.render.player.map": "variable.map_face_icon"
+        },
+        {
+          "controller.render.player.cape": "!variable.is_first_person || !variable.map_face_icon && !query.is_spectator"
         }
       ],
       "enable_attachables": true

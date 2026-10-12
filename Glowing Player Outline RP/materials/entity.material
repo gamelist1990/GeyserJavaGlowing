@@ -2,9 +2,16 @@
   "materials": {
     "version": "1.0.0",
     "outline_base:entity_alphatest": {
-      "+states": [ "EnableStencilTest", "StencilWrite" ],
-      "-states": [ "DisableCulling" ],
-      "+defines": [ "USE_OVERLAY" ],
+      "+states": [
+        "EnableStencilTest",
+        "StencilWrite"
+      ],
+      "-states": [
+        "DisableCulling"
+      ],
+      "+defines": [
+        "USE_OVERLAY"
+      ],
       "frontFace": {
         "stencilFunc": "Always",
         "stencilFailOp": "Replace",
@@ -20,10 +27,21 @@
       "stencilRef": 32
     },
     "outline:entity_static": {
-      "+states": [ "InvertCulling", "EnableStencilTest", "DisableDepthWrite", "Blending" ],
-      "+defines": [ "USE_OVERLAY" ],
-      "-states": [ "DisableCulling" ],
-      "-defines": [ "FANCY" ],
+      "+states": [
+        "InvertCulling",
+        "EnableStencilTest",
+        "DisableDepthWrite",
+        "Blending"
+      ],
+      "+defines": [
+        "USE_OVERLAY"
+      ],
+      "-states": [
+        "DisableCulling"
+      ],
+      "-defines": [
+        "FANCY"
+      ],
       "depthFunc": "Always",
       "frontFace": {
         "stencilFunc": "NotEqual"
@@ -35,10 +53,21 @@
       "stencilReadMark": 32
     },
     "outline_no_esp:entity_static": {
-      "+states": [ "InvertCulling", "EnableStencilTest", "DisableDepthWrite", "Blending" ],
-      "+defines": [ "USE_OVERLAY" ],
-      "-states": [ "DisableCulling" ],
-      "-defines": [ "FANCY" ],
+      "+states": [
+        "InvertCulling",
+        "EnableStencilTest",
+        "DisableDepthWrite",
+        "Blending"
+      ],
+      "+defines": [
+        "USE_OVERLAY"
+      ],
+      "-states": [
+        "DisableCulling"
+      ],
+      "-defines": [
+        "FANCY"
+      ],
       "frontFace": {
         "stencilFunc": "NotEqual"
       },
@@ -49,14 +78,19 @@
       "stencilReadMark": 32
     },
     "outline_base_armor:entity_alphatest": {
-      "+defines": [ "GLINT" ],
+      "+defines": [
+        "GLINT"
+      ],
       "+samplerStates": [
         {
           "samplerIndex": 1,
           "textureWrap": "Repeat"
         }
       ],
-      "+states": [ "EnableStencilTest", "StencilWrite" ],
+      "+states": [
+        "EnableStencilTest",
+        "StencilWrite"
+      ],
       "frontFace": {
         "stencilFunc": "Always",
         "stencilFailOp": "Replace",
@@ -70,6 +104,23 @@
         "stencilPassOp": "Replace"
       },
       "stencilRef": 32
+    },
+    "outline_depth:entity_static": {
+      "+states": [
+        "InvertCulling",
+        "DisableDepthWrite",
+        "Blending"
+      ],
+      "-states": [
+        "DisableCulling"
+      ],
+      "+defines": [
+        "USE_OVERLAY"
+      ],
+      "-defines": [
+        "FANCY"
+      ],
+      "depthFunc": "LessEqual"
     }
   }
 }
