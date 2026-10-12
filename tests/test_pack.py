@@ -51,7 +51,7 @@ class PackTests(unittest.TestCase):
         with zipfile.ZipFile(PACK) as archive:
             controllers = json.loads(archive.read('render_controllers/player.render_controllers.json'))['render_controllers']
             self.assertIn('controller.render.player.first_person', controllers)
-            player = json.loads(archive.read('entity/player.entity.json'))['minecraft:client_entity']['description']
+            player = json.loads(re.sub(r'(?m)^\s*//.*$', '', archive.read('entity/player.entity.json').decode()))['minecraft:client_entity']['description']
             animation = player['animations']['first_person_item_fix']
             definitions = json.loads(archive.read('animations/first_person_item_fix.animation.json'))['animations']
             self.assertIn(animation, definitions)
