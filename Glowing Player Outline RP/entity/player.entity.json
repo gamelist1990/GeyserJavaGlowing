@@ -3,7 +3,6 @@
   "minecraft:client_entity": {
     "description": {
       "identifier": "minecraft:player",
-      "min_engine_version": "1.12.0",
       "materials": {
         "default": "entity_alphatest",
         "cape": "outline_base",
@@ -192,7 +191,7 @@
         "skeleton_attack": "animation.skeleton.attack",
         "sleeping": "animation.player.sleeping",
         "first_person_base_pose": "animation.player.first_person.base_pose",
-        "first_person_empty_hand": "animation.geyser_cooldown.first_person.item_pose",
+        "first_person_empty_hand": "animation.player.first_person.empty_hand",
         "first_person_swap_item": "animation.player.first_person.swap_item",
         "first_person_shield_block": "animation.player.first_person.shield_block",
         "first_person_attack_controller": "controller.animation.player.first_person_attack",
