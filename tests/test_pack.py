@@ -21,7 +21,7 @@ class PackTests(unittest.TestCase):
             self.assertNotIn('scripts/glow.js', names)
             rp = archive.read('entity/player.entity.json').decode('utf8')
             self.assertIn("q.property('glow:color') == 2", rp)
-            self.assertIn('variable.wide = variable.is_first_person ? 0.0 : (!variable.slim);', rp)
+            self.assertIn('variable.wide = !variable.slim;', rp)
             self.assertNotIn("q.property('glow:is_slim')", rp)
 
     def test_bridge_does_not_send_animation(self):
@@ -47,21 +47,15 @@ class PackTests(unittest.TestCase):
                 if path.is_file():
                     self.assertEqual(path.read_bytes(), archive.read(path.relative_to(root).as_posix()))
 
-    def test_glowing_changes_only_third_person_rendering(self):
+    def test_first_person_pipeline_and_position_fix_resolve(self):
         with zipfile.ZipFile(PACK) as archive:
-            render = json.loads(archive.read('render_controllers/player.render_controllers.json'))
-            controllers = render['render_controllers']
-            self.assertNotIn('controller.render.player.first_person', controllers)
-            self.assertNotIn('controller.render.player.first_person_spectator', controllers)
+            controllers = json.loads(archive.read('render_controllers/player.render_controllers.json'))['render_controllers']
+            self.assertIn('controller.render.player.first_person', controllers)
             player = json.loads(archive.read('entity/player.entity.json'))['minecraft:client_entity']['description']
-            self.assertNotIn('first_person_item_fix', player['animations'])
-            self.assertNotIn('animations/first_person_item_fix.animation.json', archive.namelist())
-            self.assertIn({'controller.render.player.cape':
-                           '!variable.is_first_person && !variable.map_face_icon && !query.is_spectator'},
-                          player['render_controllers'])
-            self.assertIn({'elytra_default_controller':
-                           "!variable.is_first_person && query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"},
-                          player['scripts']['animate'])
+            animation = player['animations']['first_person_item_fix']
+            definitions = json.loads(archive.read('animations/first_person_item_fix.animation.json'))['animations']
+            self.assertIn(animation, definitions)
+            self.assertEqual(set(definitions[animation]['bones']), {'rightArm'})
 
 if __name__ == '__main__':
     unittest.main()

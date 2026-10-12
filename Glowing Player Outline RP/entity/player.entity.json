@@ -3,6 +3,7 @@
   "minecraft:client_entity": {
     "description": {
       "identifier": "minecraft:player",
+      "min_engine_version": "1.12.0",
       "materials": {
         "default": "entity_alphatest",
         "cape": "outline_base",
@@ -44,7 +45,7 @@
         "cape": "geometry.cape"
       },
       "scripts": {
-        "scale": "0.9375",
+        "scale": 0.9375,
         "variables": {
           "variable.fp_melee_spear_use_attachable_rotation_z": "public",
           "variable.tp_melee_spear_use_attachable_rotation_z": "public",
@@ -54,10 +55,10 @@
           "variable.item_use_normalized": "public"
         },
         "initialize": [
-          "v.is_holding_right = 0.0;",
-          "v.is_blinking = 0.0;",
-          "v.last_blink_time = 0.0;",
-          "v.hand_bob = 0.0;",
+          "variable.is_holding_right = 0.0;",
+          "variable.is_blinking = 0.0;",
+          "variable.last_blink_time = 0.0;",
+          "variable.hand_bob = 0.0;",
           "v.melee_spear_java_to_bedrock_scale = 40.0;",
           "variable.rightarm_pivot = 0.0;",
           "variable.leftarm_pivot = 0.0;",
@@ -127,23 +128,30 @@
           "v.tp_melee_spear_attack_arm_rotation_x = t.melee_spear_attack_raise_scale * 90.0 + t.melee_spear_attack_thrust_scale * -120.0 + t.melee_spear_attack_recover_scale * 30.0;",
           "v.tp_melee_spear_attack_item_rotation_x = t.melee_spear_attack_thrust_scale * 60.0 + t.melee_spear_attack_recover_scale * -60.0;",
           "v.tp_melee_spear_attack_attachable_position_z = (t.melee_spear_attack_thrust_scale * -0.15 + t.melee_spear_attack_recover_scale * 0.15) * v.melee_spear_java_to_bedrock_scale;",
-          "variable.rightarm_pivot = variable.is_first_person ? 0.0 : (query.get_default_bone_pivot('rightarm', 1));",
-          "variable.leftarm_pivot = variable.is_first_person ? 0.0 : (query.get_default_bone_pivot('leftarm', 1));",
-          "variable.slim = variable.is_first_person ? 0.0 : (query.get_default_bone_pivot('rightarm', 1) == 21.5 || (variable.short_arm_offset_left == 0.5));",
-          "variable.wide = variable.is_first_person ? 0.0 : (!variable.slim);",
-          "variable.is_in_ui = variable.is_first_person ? 0.0 : (!query.is_alive || query.is_sleeping);",
-          "variable.property_glow = variable.is_first_person ? 0.0 : (q.property('glow:color') == 0);",
-          "variable.is_holding = variable.is_first_person ? 0.0 : (query.get_equipped_item_name(0, 1) != '');"
+          "variable.rightarm_pivot = query.get_default_bone_pivot('rightarm', 1);",
+          "variable.leftarm_pivot = query.get_default_bone_pivot('leftarm', 1);",
+          "variable.slim = query.get_default_bone_pivot('rightarm', 1) == 21.5 || (variable.short_arm_offset_left == 0.5);",
+          "variable.wide = !variable.slim;",
+          "variable.is_in_ui = !query.is_alive || query.is_sleeping;",
+          "variable.property_glow = q.property('glow:color') == 0;",
+          "variable.is_holding = query.get_equipped_item_name(0, 1) != '';"
         ],
         "animate": [
           "root",
           {
-            "elytra_default_controller": "!variable.is_first_person && query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"
+            "elytra_default_controller": "query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"
           }
         ],
         "should_update_effects_offscreen": "1.0"
       },
       "animations": {
+        "first_person_item_fix": "animation.player.first_person.item_fix",
+        "elytra_default_controller": "controller.animation.elytra_outline.default",
+        "elytra_default": "animation.elytra_outline.default",
+        "elytra_gliding": "animation.elytra_outline.gliding",
+        "elytra_sneaking": "animation.elytra_outline.sneaking",
+        "elytra_sleeping": "animation.elytra_outline.sleeping",
+        "elytra_swimming": "animation.elytra_outline.swimming",
         "root": "controller.animation.player.root",
         "base_controller": "controller.animation.player.base",
         "hudplayer": "controller.animation.player.hudplayer",
@@ -212,12 +220,18 @@
         "tooting_goat_horn": "animation.humanoid.tooting_goat_horn",
         "holding_brush": "animation.humanoid.holding_brush",
         "brushing": "animation.humanoid.brushing",
-        "elytra_default_controller": "controller.animation.elytra_outline.default",
-        "elytra_default": "animation.elytra_outline.default",
-        "elytra_gliding": "animation.elytra_outline.gliding",
-        "elytra_sneaking": "animation.elytra_outline.sneaking",
-        "elytra_sleeping": "animation.elytra_outline.sleeping",
-        "elytra_swimming": "animation.elytra_outline.swimming"
+        "first_person_sword_cooldown": "animation.cooldown.sword",
+        "first_person_axe_cooldown": "animation.cooldown.axe",
+        "first_person_mace_cooldown": "animation.cooldown.mace",
+        "cooldown_sword": "controller.animation.cooldown_sword",
+        "cooldown_axe": "controller.animation.cooldown_axe",
+        "cooldown_mace": "controller.animation.cooldown_mace",
+        "shield_offhand": "animation.shield.wield_off_hand_first_person_blocking2",
+        "shield_mainhand": "animation.shield.wield_mian_hand_first_person_blocking2",
+        "animation.shield.wield_main_hand_first_person": "animation.shield.wield_main_hand_first_person",
+        "animation.shield.wield_off_hand_first_person": "animation.shield.wield_off_hand_first_person",
+        "animation.shield.wield_main_hand_first_person_block": "animation.shield.wield_main_hand_first_person_block",
+        "animation.shield.wield_off_hand_first_person_block": "animation.shield.wield_off_hand_first_person_block"
       },
       "render_controllers": [
         {
@@ -236,7 +250,7 @@
           "controller.render.player.map": "variable.map_face_icon"
         },
         {
-          "controller.render.player.cape": "!variable.is_first_person && !variable.map_face_icon && !query.is_spectator"
+          "controller.render.player.cape": "!variable.is_first_person || !variable.map_face_icon && !query.is_spectator"
         },
         {
           "controller.render.outline_layer_black_no_esp": "variable.slim && !variable.is_first_person && q.property('glow:color') == 1"
