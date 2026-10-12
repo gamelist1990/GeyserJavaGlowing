@@ -21,7 +21,7 @@ class PackTests(unittest.TestCase):
             self.assertNotIn('scripts/glow.js', names)
             rp = archive.read('entity/player.entity.json').decode('utf8')
             self.assertIn("q.property('glow:color') == 2", rp)
-            self.assertIn('variable.wide = !variable.slim;', rp)
+            self.assertIn('variable.wide = variable.is_first_person ? 0.0 : (!variable.slim);', rp)
             self.assertNotIn("q.property('glow:is_slim')", rp)
 
     def test_bridge_does_not_send_animation(self):

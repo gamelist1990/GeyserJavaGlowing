@@ -43,7 +43,7 @@ class MergeTests(unittest.TestCase):
         for alias, definition in self.original["animations"].items():
             self.assertEqual(merged["animations"][alias], definition)
         self.assertTrue(merged["enable_attachables"])
-        self.assertIn("variable.wide = !variable.slim;", merged["scripts"]["pre_animation"])
+        self.assertIn("variable.wide = variable.is_first_person ? 0.0 : (!variable.slim);", merged["scripts"]["pre_animation"])
 
     def test_only_one_cooldown_driver_runs(self):
         merged = self.merged()
@@ -101,7 +101,7 @@ class ArchiveTests(unittest.TestCase):
             self.assertEqual(player["animations"]["gca_recovery"],
                              original_cooldown["animations"]["gca_recovery"])
             self.assertIn("gca_recovery", player["scripts"]["animate"])
-            self.assertIn("variable.wide = !variable.slim;", player["scripts"]["pre_animation"])
+            self.assertIn("variable.wide = variable.is_first_person ? 0.0 : (!variable.slim);", player["scripts"]["pre_animation"])
 
     def test_shared_resources_are_identical(self):
         one = {k: v for k, v in self.packs[0].items() if k != "manifest.json"}
