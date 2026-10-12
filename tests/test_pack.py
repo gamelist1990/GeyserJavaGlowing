@@ -1,8 +1,11 @@
 import json
+import io
+from decimal import Decimal
 import re
 import unittest
 import zipfile
 from pathlib import Path
+from PIL import Image
 
 HERE = Path(__file__).resolve().parents[1]
 PACK = HERE / 'build/generated/resource-pack/GeyserJavaGlowing.mcpack'
@@ -45,7 +48,20 @@ class PackTests(unittest.TestCase):
         with zipfile.ZipFile(PACK) as archive:
             for path in root.rglob('*'):
                 if path.is_file():
-                    self.assertEqual(path.read_bytes(), archive.read(path.relative_to(root).as_posix()))
+                    source = path.read_bytes()
+                    packed = archive.read(path.relative_to(root).as_posix())
+                    if path.suffix in ('.json', '.material'):
+                        def decoded(data):
+                            return json.loads(re.sub(r'(?m)^\s*//.*$', '', data.decode('utf-8-sig')),
+                                              parse_float=Decimal, parse_int=Decimal)
+                        self.assertEqual(decoded(source), decoded(packed))
+                    elif path.name == 'pack_icon.png':
+                        with Image.open(io.BytesIO(source)) as before, Image.open(io.BytesIO(packed)) as after:
+                            self.assertEqual(before.size, after.size)
+                            self.assertEqual(before.convert('RGBA').tobytes(), after.convert('RGBA').tobytes())
+                            self.assertEqual(before.info, after.info)
+                    else:
+                        self.assertEqual(source, packed)
 
     def test_first_person_pipeline_and_position_fix_resolve(self):
         with zipfile.ZipFile(PACK) as archive:

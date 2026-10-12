@@ -28,16 +28,27 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
-val resourcePack = tasks.register<Zip>("resourcePack") {
+val rawResourcePack = tasks.register<Zip>("rawResourcePack") {
     from("Glowing Player Outline RP")
     archiveFileName.set("GeyserJavaGlowing.mcpack")
-    destinationDirectory.set(layout.buildDirectory.dir("generated/resource-pack"))
+    destinationDirectory.set(layout.buildDirectory.dir("generated/raw-resource-pack"))
     isPreserveFileTimestamps = false
     isReproducibleFileOrder = true
 }
+val compactPack = layout.buildDirectory.file("generated/resource-pack/GeyserJavaGlowing.mcpack")
+val resourcePack = tasks.register<Exec>("resourcePack") {
+    dependsOn(rawResourcePack)
+    inputs.file(rawResourcePack.flatMap { it.archiveFile })
+    inputs.file("scripts/compact_resource_pack.py")
+    outputs.file(compactPack)
+    commandLine("python3", "scripts/compact_resource_pack.py",
+        rawResourcePack.get().archiveFile.get().asFile.absolutePath,
+        compactPack.get().asFile.absolutePath)
+}
 
 tasks.processResources {
-    from(resourcePack)
+    dependsOn(resourcePack)
+    from(compactPack)
     filesMatching("extension.yml") {
         expand("version" to resourceVersion)
     }

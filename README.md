@@ -4,10 +4,11 @@ Java EditionのプレイヤーのGlowingを、Geyserの追加エンティティ�
 
 ## ビルドと導入
 
-Java 21で実行します。Gradle Wrapperを同梱しています。リソースパック検証にはPython 3も必要です。
+Java 21で実行します。Gradle Wrapperを同梱しています。リソースパックの圧縮・検証にはPython 3とPillowも必要です。
 
 ```bash
-./gradlew --no-daemon clean build testResourcePack
+python3 -m pip install -r scripts/requirements-resource-pack.txt
+bash gradlew --no-daemon clean build testResourcePack
 ```
 
 生成物は `build/libs/GeyserJavaGlowing-0.2.0.jar` です。Geyserの `extensions` フォルダへ置いて再起動し、Bedrock側で配信されるリソースパックを適用してください。PaperプラグインではなくGeyser拡張です。Behavior Packは不要です。
@@ -48,4 +49,4 @@ Java単体テスト17件とリソースパック検証4件を実装しました�
 
 ## GeyserCooldownAnimation との併用
 
-GCA 1.3.14とGlowing 0.2.12は、ユーザーが剣の位置・クールダウン・発光描画を確認した安定版です。元の580fa30のGlowing素材を保持し、player定義の古いmin_engine_version指定を除去しています。GCAが一つのパックを配信し、Glowing拡張は発光状態と色を通知します。
+GCA 1.3.15とGlowing 0.2.13は、確認済みの安定版1.3.14／0.2.12と同じ描画・剣の位置・クールダウン処理を保持した軽量版です。GCAが一つのパックを配信し、Glowing拡張は状態と色を通知します。ビルド時にJSONとアイコンを可逆圧縮し、内容・数値・画素の一致を検証します。
