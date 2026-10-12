@@ -47,5 +47,21 @@ class PackTests(unittest.TestCase):
                 if path.is_file():
                     self.assertEqual(path.read_bytes(), archive.read(path.relative_to(root).as_posix()))
 
+    def test_glowing_changes_only_third_person_rendering(self):
+        with zipfile.ZipFile(PACK) as archive:
+            render = json.loads(archive.read('render_controllers/player.render_controllers.json'))
+            controllers = render['render_controllers']
+            self.assertNotIn('controller.render.player.first_person', controllers)
+            self.assertNotIn('controller.render.player.first_person_spectator', controllers)
+            player = json.loads(archive.read('entity/player.entity.json'))['minecraft:client_entity']['description']
+            self.assertNotIn('first_person_item_fix', player['animations'])
+            self.assertNotIn('animations/first_person_item_fix.animation.json', archive.namelist())
+            self.assertIn({'controller.render.player.cape':
+                           '!variable.is_first_person && !variable.map_face_icon && !query.is_spectator'},
+                          player['render_controllers'])
+            self.assertIn({'elytra_default_controller':
+                           "!variable.is_first_person && query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"},
+                          player['scripts']['animate'])
+
 if __name__ == '__main__':
     unittest.main()

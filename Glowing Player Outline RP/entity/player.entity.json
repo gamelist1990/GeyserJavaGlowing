@@ -163,14 +163,13 @@
         "animate": [
           "root",
           {
-            "elytra_default_controller": "query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"
+            "elytra_default_controller": "!variable.is_first_person && query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"
           },
           "gca_recovery"
         ],
         "should_update_effects_offscreen": "1.0"
       },
       "animations": {
-        "first_person_item_fix": "animation.player.first_person.item_fix",
         "elytra_default_controller": "controller.animation.elytra_outline.default",
         "elytra_default": "animation.elytra_outline.default",
         "elytra_gliding": "animation.elytra_outline.gliding",
@@ -285,7 +284,7 @@
           "controller.render.player.map": "variable.map_face_icon"
         },
         {
-          "controller.render.player.cape": "!variable.is_first_person || !variable.map_face_icon && !query.is_spectator"
+          "controller.render.player.cape": "!variable.is_first_person && !variable.map_face_icon && !query.is_spectator"
         },
         {
           "controller.render.outline_layer_black_no_esp": "variable.slim && !variable.is_first_person && q.property('glow:color') == 1"

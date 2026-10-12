@@ -56,7 +56,7 @@ class MergeTests(unittest.TestCase):
         self.assertIn("variable.gca_hand = !query.is_item_equipped('main_hand');",
                       merged["scripts"]["pre_animation"])
         self.assertIn({"elytra_default_controller":
-                       "query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"}, animate)
+                       "!variable.is_first_person && query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"}, animate)
 
     def test_unknown_animation_conflict_is_rejected(self):
         description = self.cooldown["minecraft:client_entity"]["description"]
@@ -88,8 +88,9 @@ class ArchiveTests(unittest.TestCase):
     def test_both_priority_orders_keep_glowing_and_server_timing(self):
         original_glow = compat.parse(self.glow[compat.PLAYER])["minecraft:client_entity"]["description"]
         original_cooldown = compat.parse(self.cooldown[compat.PLAYER])["minecraft:client_entity"]["description"]
-        self.assertNotIn("gca_recovery", original_glow["animations"])
-        self.assertNotIn("outline", original_cooldown["materials"])
+        self.assertEqual(original_glow["animations"].get("gca_recovery"),
+                         "controller.animation.geyser_cooldown.recovery")
+        self.assertEqual(original_cooldown["materials"].get("outline"), "outline")
         for stack in (self.packs, list(reversed(self.packs))):
             effective = {}
             for pack in stack:
