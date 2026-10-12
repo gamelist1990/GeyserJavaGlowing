@@ -57,6 +57,10 @@ public final class GeyserJavaGlowingExtension implements Extension {
 
     @Subscribe
     public void onResourcePacks(GeyserDefineResourcePacksEvent event) {
+        if (extensionManager().extension("geyser-cooldown-animation") != null) {
+            logger().info("Using Cooldown's native third-person outline; standalone Glowing pack is not registered.");
+            return;
+        }
         Path target = dataFolder().resolve("GeyserJavaGlowing.mcpack");
         try {
             Files.createDirectories(dataFolder());
