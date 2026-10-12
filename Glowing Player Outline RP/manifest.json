@@ -8,22 +8,22 @@
       20,
       0
     ],
-    "uuid": "863efd60-6a1d-406b-9c46-8e1ab93edb41",
+    "uuid": "22c0a749-bfc6-40af-bafe-3172e3495aef",
     "version": [
       0,
       2,
-      3
+      4
     ]
   },
   "modules": [
     {
       "description": "\u00a7eThis Pack is Made by \u00a7bBigGamers4u\n\u00a7fPlayers can now glow just like Java",
       "type": "resources",
-      "uuid": "99f9ebde-8da2-4f49-9488-7e6f547eec76",
+      "uuid": "10c8d3d3-cb4f-4be4-8132-4e659e9ec058",
       "version": [
         0,
         2,
-        3
+        4
       ]
     }
   ]

@@ -65,21 +65,7 @@
           "variable.wide = 0.0;",
           "variable.is_in_ui = 0.0;",
           "variable.property_glow = 0.0;",
-          "variable.is_holding = 0.0;",
-          "variable.gca_duration = 0.65;",
-          "variable.gca_requested = 0;",
-          "variable.gca_requested_at = 0;",
-          "variable.gca_active_duration = 0.65;",
-          "variable.gca_hand = 0;",
-          "variable.gca_sword = 0;",
-          "variable.gca_axe = 0;",
-          "variable.gca_mace = 0;",
-          "variable.gca_tool = 0;",
-          "variable.gca_trident = 0;",
-          "variable.gca_spear = 0;",
-          "variable.gca_elapsed = 0;",
-          "variable.gca_lower_duration = 0.125;",
-          "variable.gca_lower_amount = 0;"
+          "variable.is_holding = 0.0;"
         ],
         "pre_animation": [
           "v.helmet_layer_visible = !query.has_head_gear;",
@@ -147,24 +133,13 @@
           "variable.wide = variable.is_first_person ? 0.0 : (!variable.slim);",
           "variable.is_in_ui = variable.is_first_person ? 0.0 : (!query.is_alive || query.is_sleeping);",
           "variable.property_glow = variable.is_first_person ? 0.0 : (q.property('glow:color') == 0);",
-          "variable.is_holding = variable.is_first_person ? 0.0 : (query.get_equipped_item_name(0, 1) != '');",
-          "variable.gca_hand = !query.is_item_equipped('main_hand');",
-          "variable.gca_sword = query.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_sword');",
-          "variable.gca_axe = query.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_axe');",
-          "variable.gca_mace = query.is_item_name_any('slot.weapon.mainhand', 'minecraft:mace');",
-          "variable.gca_tool = query.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_pickaxe', 'minecraft:is_shovel');",
-          "variable.gca_trident = query.is_item_name_any('slot.weapon.mainhand', 'minecraft:trident');",
-          "variable.gca_spear = query.equipped_item_any_tag('slot.weapon.mainhand', 'minecraft:is_spear');",
-          "variable.gca_elapsed = math.max(0, query.life_time - variable.gca_requested_at);",
-          "variable.gca_lower_duration = math.min(0.125, math.max(variable.gca_duration, 0.02) * 0.5);",
-          "variable.gca_lower_amount = math.clamp(variable.gca_elapsed / variable.gca_lower_duration, 0, 1) - math.clamp((variable.gca_elapsed - variable.gca_lower_duration) / (math.max(variable.gca_duration, 0.02) - variable.gca_lower_duration), 0, 1);"
+          "variable.is_holding = variable.is_first_person ? 0.0 : (query.get_equipped_item_name(0, 1) != '');"
         ],
         "animate": [
           "root",
           {
             "elytra_default_controller": "!variable.is_first_person && query.is_item_name_any('slot.armor.chest', 0, 'minecraft:elytra')"
-          },
-          "gca_recovery"
+          }
         ],
         "should_update_effects_offscreen": "1.0"
       },
@@ -237,22 +212,12 @@
         "tooting_goat_horn": "animation.humanoid.tooting_goat_horn",
         "holding_brush": "animation.humanoid.holding_brush",
         "brushing": "animation.humanoid.brushing",
-        "attack_rotation_custom_sword": "animation.player.first_person.attack_rotation_custom_sword",
-        "attack_rotation_custom_axe": "animation.player.first_person.attack_rotation_custom_axe",
-        "attack_rotation_custom_mace": "animation.player.first_person.attack_rotation_custom_mace",
-        "gca_recovery": "controller.animation.geyser_cooldown.recovery",
-        "gca_recovery_sword": "animation.geyser_cooldown.recovery_sword",
-        "gca_recovery_axe": "animation.geyser_cooldown.recovery_axe",
-        "gca_recovery_mace": "animation.geyser_cooldown.recovery_mace",
         "elytra_default_controller": "controller.animation.elytra_outline.default",
         "elytra_default": "animation.elytra_outline.default",
         "elytra_gliding": "animation.elytra_outline.gliding",
         "elytra_sneaking": "animation.elytra_outline.sneaking",
         "elytra_sleeping": "animation.elytra_outline.sleeping",
-        "elytra_swimming": "animation.elytra_outline.swimming",
-        "gca_recovery_hand": "animation.geyser_cooldown.recovery_hand",
-        "gca_recovery_tool": "animation.geyser_cooldown.recovery_tool",
-        "gca_recovery_trident": "animation.geyser_cooldown.recovery_trident"
+        "elytra_swimming": "animation.elytra_outline.swimming"
       },
       "render_controllers": [
         {

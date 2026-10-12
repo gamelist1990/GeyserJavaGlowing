@@ -48,7 +48,4 @@ Java単体テスト17件とリソースパック検証4件を実装しました�
 
 ## GeyserCooldownAnimation との併用
 
-0.2.1 以降は GeyserCooldownAnimation と同じ統合済み `entity/player.entity.json` を同梱します。
-Glowing の輪郭描画と Cooldown の `gca_*` / recovery controller を同じ player 定義に保持するため、2つのリソースパックの優先順に依存しません。
-通常の `GeyserJavaGlowing` と `GeyserCooldownAnimation` の JAR を同時に導入するだけでよく、専用の互換 JAR は不要です。
-別のリソースパックが `entity/player.entity.json` を上書きする場合は、そのパック側でも統合が必要です。
+互換パックは廃止しました。それぞれ独立したリソースパックです。両方は `minecraft:player` を定義するため、同時使用時はパックの優先順位により片方の描画が上書きされます。
