@@ -8,3 +8,4 @@ integration/results/
 integration/fixtures/
 
 __pycache__/
+/bin/
